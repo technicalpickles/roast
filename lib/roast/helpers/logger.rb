@@ -77,7 +77,20 @@ module Roast
             if severity == "INFO" && !msg_string.start_with?("[")
               msg_string
             else
-              "[#{datetime.strftime("%Y-%m-%d %H:%M:%S")}] #{severity}: #{msg_string.gsub(/^\[|\]$/, "").strip}\n"
+              severity_color = case severity
+              when "DEBUG"
+                :blue
+              when "INFO"
+                :aqua
+              when "WARN"
+                :yellow
+              when "ERROR"
+                :red
+              when "FATAL"
+                :red
+              end
+              prefix = Rainbow("[#{datetime.strftime("%Y-%m-%d %H:%M:%S")}] #{severity}:").color(severity_color)
+              "#{prefix} #{msg_string.gsub(/^\[|\]$/, "").strip}\n"
             end
           end
         end
