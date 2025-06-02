@@ -39,7 +39,7 @@ module Roast
         if path && File.exist?(path)
           File.read(path)
         else
-          $stderr.puts "Prompt file for #{name} not found: #{path}"
+          Logger.error("Prompt file for #{name} not found: #{path.inspect}")
         end
       end
 

@@ -2,6 +2,7 @@
 
 require "logger"
 require "forwardable"
+require "rainbow"
 
 module Roast
   module Helpers
